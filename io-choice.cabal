@@ -25,4 +25,4 @@ Library
 
 Source-Repository head
   Type:                 git
-  Location:             git clone git://github.com/kazu-yamamoto/alternative-io
+  Location:             git clone git://github.com/kazu-yamamoto/io-choice
