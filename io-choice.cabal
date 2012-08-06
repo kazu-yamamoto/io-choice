@@ -11,10 +11,7 @@ Cabal-Version:          >= 1.6
 Build-Type:             Simple
 
 Library
-  if impl(ghc >= 6.12)
-    GHC-Options:        -Wall -fno-warn-unused-do-bind
-  else
-    GHC-Options:        -Wall
+  GHC-Options:          -Wall
   Exposed-Modules:      Control.Exception.IOChoice
                         Control.Exception.IOChoice.Lifted
   Build-Depends:        base >= 4 && < 5
@@ -25,4 +22,4 @@ Library
 
 Source-Repository head
   Type:                 git
-  Location:             git clone git://github.com/kazu-yamamoto/io-choice
+  Location:             git://github.com/kazu-yamamoto/io-choice
