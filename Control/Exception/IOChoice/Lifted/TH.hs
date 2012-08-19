@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell, ScopedTypeVariables #-}
-module Control.Exception.IOChoice.TH (newIOChoice) where
-import Control.Exception
+module Control.Exception.IOChoice.Lifted.TH (newIOChoice) where
+import Control.Exception.Lifted
 import Language.Haskell.TH
 
 import Control.Exception.IOChoice.THUtil
