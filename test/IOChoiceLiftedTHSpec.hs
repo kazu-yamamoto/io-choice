@@ -1,6 +1,6 @@
 {-# LANGUAGE TemplateHaskell, FlexibleContexts #-}
 
-module IOChoiceTHSpec where
+module IOChoiceLiftedTHSpec where
 
 import Control.Exception.Lifted
 import Control.Exception.IOChoice.Lifted

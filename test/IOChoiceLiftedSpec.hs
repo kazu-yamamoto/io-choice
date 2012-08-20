@@ -1,5 +1,6 @@
 {-# LANGUAGE FlexibleContexts #-}
-module IOChoiceSpec where
+
+module IOChoiceLiftedSpec where
 
 import Control.Exception.Lifted
 import Control.Exception.IOChoice.Lifted

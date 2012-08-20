@@ -31,8 +31,11 @@ Test-Suite spec
 
     Ghc-Options:        -Wall
     Build-Depends:      base >= 4 && < 5
-                      , io-choice
                       , hspec
+                      , io-choice
+                      , lifted-base
+                      , monad-control
+                      , transformers
 
 Source-Repository head
   Type:                 git
