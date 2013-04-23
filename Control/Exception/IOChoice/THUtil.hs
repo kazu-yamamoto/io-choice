@@ -1,4 +1,4 @@
-{-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE TemplateHaskell, CPP #-}
 module Control.Exception.IOChoice.THUtil (newChoice) where
 import Language.Haskell.TH
 import Control.Exception (IOException)
@@ -26,7 +26,11 @@ checkSupported exc = do
         TySynD name [] _ -> conT name
         DataInstD _ name args _ _ -> foldl1 appT (conT name:map return args)
         NewtypeInstD _ name args _ _ -> foldl1 appT (conT name:map return args)
+#if defined(__GLASGOW_HASKELL__) && __GLASGOW_HASKELL__ >= 707
+        TySynInstD name args -> foldl1 appT (conT name:map (\(TySynEqn _ t) -> return t) args)
+#else
         TySynInstD name args _ -> foldl1 appT (conT name:map return args)
+#endif
         _ -> error $ "Exception type must not have any type argument: " ++ show exc
     PrimTyConI n _ _ -> conT n
     _ -> error $ "Type name required, but got: " ++ show exc
