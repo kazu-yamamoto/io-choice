@@ -6,8 +6,8 @@
 
 module Control.Exception.IOChoice where
 
-import Control.Exception
-import Prelude hiding (catch)
+import Control.Exception (IOException)
+import qualified Control.Exception as E
 
 -- |
 -- If 'IOException' occurs or 'goNext' is used in the left IO,
@@ -15,13 +15,13 @@ import Prelude hiding (catch)
 -- throws 'IOException'.
 
 (||>) :: IO a -> IO a -> IO a
-x ||> y = x `catch` (\(_ :: IOException) -> y)
+x ||> y = x `E.catch` (\(_ :: IOException) -> y)
 
 infixl 3 ||>
 
 -- | Go to the next 'IO' monad by throwing 'IOException'.
 goNext :: IO a
-goNext = throwIO $ userError "goNext for IO"
+goNext = E.throwIO $ userError "goNext for IO"
 
 -- | Run any one 'IO' monad.
 runAnyOne :: [IO a] -> IO a
