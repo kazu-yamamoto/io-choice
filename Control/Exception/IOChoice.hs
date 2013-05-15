@@ -17,7 +17,7 @@ import qualified Control.Exception as E
 (||>) :: IO a -> IO a -> IO a
 x ||> y = x `E.catch` (\(_ :: IOException) -> y)
 
-infixl 3 ||>
+infixr 3 ||>
 
 -- | Go to the next 'IO' monad by throwing 'IOException'.
 goNext :: IO a

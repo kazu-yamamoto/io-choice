@@ -21,7 +21,7 @@ import Prelude hiding (catch)
 (||>) :: MonadBaseControl IO m => m a -> m a -> m a
 x ||> y = x `catch` (\(_ :: IOException) -> y)
 
-infixl 3 ||>
+infixr 3 ||>
 
 -- | Go to the next 'IO' monad by throwing 'IOException'.
 goNext :: (MonadIO m, MonadBase IO m) => m a
