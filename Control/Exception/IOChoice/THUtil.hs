@@ -26,8 +26,8 @@ checkSupported exc = do
         TySynD name [] _ -> conT name
         DataInstD _ name args _ _ -> foldl1 appT (conT name:map return args)
         NewtypeInstD _ name args _ _ -> foldl1 appT (conT name:map return args)
-#if defined(__GLASGOW_HASKELL__) && __GLASGOW_HASKELL__ >= 707
-        TySynInstD name args -> foldl1 appT (conT name:map (\(TySynEqn _ t) -> return t) args)
+#if __GLASGOW_HASKELL__ >= 707
+        TySynInstD name (TySynEqn _ t) -> foldl1 appT (conT name:[return t])
 #else
         TySynInstD name args _ -> foldl1 appT (conT name:map return args)
 #endif
