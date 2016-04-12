@@ -21,11 +21,18 @@ checkSupported exc = do
   case info of
     TyConI dec       -> do
       case dec of
+#if __GLASGOW_HASKELL__ >= 800
+        DataD _ name [] _ _ _ -> conT name
+        NewtypeD _ name [] _ _ _ -> conT name
+        DataInstD _ name args _ _ _ -> foldl1 appT (conT name:map return args)
+        NewtypeInstD _ name args _ _ _ -> foldl1 appT (conT name:map return args)
+#else
         DataD _ name [] _ _ -> conT name
         NewtypeD _ name [] _ _ -> conT name
-        TySynD name [] _ -> conT name
         DataInstD _ name args _ _ -> foldl1 appT (conT name:map return args)
         NewtypeInstD _ name args _ _ -> foldl1 appT (conT name:map return args)
+#endif
+        TySynD name [] _ -> conT name
 #if __GLASGOW_HASKELL__ >= 707
         TySynInstD name (TySynEqn _ t) -> foldl1 appT (conT name:[return t])
 #else
