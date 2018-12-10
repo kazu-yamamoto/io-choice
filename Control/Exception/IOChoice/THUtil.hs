@@ -34,7 +34,7 @@ checkSupported exc = do
 #endif
         TySynD name [] _ -> conT name
 #if __GLASGOW_HASKELL__ >= 707
-        TySynInstD name (TySynEqn _ t) -> foldl1 appT (conT name:[return t])
+        TySynInstD name (TySynEqn args _) -> foldl1 appT (conT name:map return args)
 #else
         TySynInstD name args _ -> foldl1 appT (conT name:map return args)
 #endif
