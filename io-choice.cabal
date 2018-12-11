@@ -5,7 +5,7 @@ Maintainer:             Kazu Yamamoto <kazu@iij.ad.jp>
 License:                BSD3
 License-File:           LICENSE
 Synopsis:               Choice for IO and lifted IO
-Description:            Choice for IO and lifted IO
+Description:            Providing choice features for IO and lifted IO
 Category:               Control
 Cabal-Version:          >= 1.8
 Build-Type:             Simple
